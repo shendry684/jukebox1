@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Movie</title>
+</head>
+<body>
+    <p><a href="/displaysong">Home</a> | <a href="/addsong">Add Song</a> | <a href="/logout">Logout</a></p>
+    <form action="/createsong" method="POST">
+        {% csrf_token %}
+        <fieldset><legend>New Song</legend>
+            <input type="text" name="new" placeholder="Enter Artist">
+            <p>Choose from this list: <select name="existing">
+                    <option value="" disabled selected hidden>Choose an Artist</option>
+                    {% for artist in artist %}
+                    <option value="{{artist.id}}">{{artist.artistname}}</option>
+                    {% endfor %}
+                </select></p>
+          
+            <input type="text" name="title" placeholder="Enter Song Title">
+            <input type="submit" value="Add Song"><br><br>
+            <button><a href="/displaysong">Go Back</a></button>
+        </fieldset>
+    
+    {% if messages %}
+            {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <!-- <p>Choose from artist list <select name ="existing"></select>
+            <option value="" disabled selected hidden>Choose an Artist</option>
+            {% for artist in Artists %}
+            <option value="{{artist.id}}">{{artist.name}}</option>
+            {% endfor %}
+        </select></p>
+        <p>Or add a new Artist: <input type="text" name="new"></p>
+        <input type="submit" value="Add Song"> -->
+    </form>
+
+
+
+        </p>
+</body>
+</html>

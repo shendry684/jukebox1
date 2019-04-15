@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login/Registration</title>
+</head>
+
+<body>
+    <p><a href="/displaysong">Home</a> | <a href="/addsong">New Song</a> | <a href="/logout">Logout</a></p>
+    <h1>Register</h1>
+    <form class="" action="/register" method="post">
+        {% csrf_token %}
+        <input type="text" name="fname" placeholder="First Name"><br>
+        <input type="text" name="lname" placeholder="Last Name"><br>
+        <input type="text" name="email" placeholder="Email"><br>
+        <input type="date" name="birthday" placeholder="Birth Date"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="password" name="confirm_password" placeholder="Confirm Password"><br>
+        <input type="submit" name="" value="Register">
+    </form>
+
+    {% if messages %}
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" placeholder="Email"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <input type="submit" name="" value="Login">
+
+
+        </form>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show Song</title>
+</head>
+<body>
+    <p><a href="/displaysong">Home</a> | <a href="/addsong">New Song</a> | <a href="/logout">Logout</a></p>
+  <h1>Hello world</h1>
+  <p>Artist: {{ song.artist.artistname }}</p>
+   
+    
+    <p>Song: {{song.title}}</p>
+    
+    <p> {{ artist.songs.title }}</p>
+    <p>Added by: {{ song.addedby.fname}} {{ song.addedby.lname }}</p><br>
+    
+    <p>Users Who Like this artist</p>
+    {% for user in favorites %}
+    {{ user.fname }} {{user.lname }},
+    {% endfor %}
+    
+   
+</body>
+</html>

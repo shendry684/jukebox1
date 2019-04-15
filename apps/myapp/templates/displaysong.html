@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Success</title>
+        <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                td, th {
+                  border: 1px solid #dddddd;
+                  text-align: left;
+                  padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                  background-color: #dddddd;
+                }
+                </style>
+    </head>
+    <body>
+        <p><a href="/addsong">Add New Song</a> | <a href="/logout">Logout</a></p>
+        <h1>Welcome {{user.fname}} {{user.lname}}!!!</h1>
+        <p>Your id is {{user.id}}</p>
+        <h1>Songs I like:</h1>
+        
+      <table>
+        <tr>
+          <th>Song</th>
+          <th>Artist</th>
+          <th>Date Added</th>
+          <th>Added By</th>
+          <th>Unfavorite</th>
+          <th>Remove?</th>
+        </tr>
+        {% for i in songs %}
+        <tr>
+          <td><a href="/showsong/{{ i.id }}">{{ i.title }}</a></td>
+          <td><a href="/showartist/{{ i.artist.id }}">{{ i.artist.artistname }}</a></td>
+          <td>{{ i.created_at }}</td>
+          <td>{{ i.addedby.fname }} {{ i.addedby.lname }}</td>
+         
+          <td><a href="/unfavorite/{{i.id}}">unfavorite</a></td>
+          {% if i.addedby.id == request.session.userid %}
+          <td><a href="/delete/{{i.id}}">Delete</a></td>
+          {% else %}
+          
+        {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
+        <h1>NonFavorite Songs:</h1>
+        <table>
+            <tr>
+              <th>Song</th>
+              <th>Artist</th>
+              <th>Date Added</th>
+              <th>Added By</th>
+              <th>Favorite</th>
+              
+            </tr>
+            {% for i in unfavorites %}
+            <tr>
+              <td><a href="/showsong/{{ i.id }}">{{ i.title }}</a></td>
+              <td><a href="/showartist/{{ i.artist.id }}">{{ i.artist.artistname }}</a></td>
+              <td>{{ i.created_at }}</td>
+              <td>{{ i.addedby.fname }} {{ i.addedby.lname }}</td>
+              <td><a href="/favorite/{{i.id}}">favorite song</a></td>
+            
+              </tr>
+              {% endfor %}
+        </table>
+    </body>
+</html>

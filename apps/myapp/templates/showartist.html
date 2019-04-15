@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show Artist</title>
+</head>
+
+<body>
+    <p><a href="/displaysong">Home</a> | <a href="/addsong">New Song</a> | <a href="/logout">Logout</a></p>
+    <p>Artist: {{ artist.artistname }}</p>
+    <p><u>Songs:</u></p>
+    <ul>
+    {% for song in songs %}
+   
+    <li> {{song.title}}
+    {% endfor %}
+    </ul>
+    <p> {{ artist.songs.title }}</p>
+    <p>Added by: {{ artist.addedby.fname }} {{ artist.addedby.lname }}</p><br>
+    
+    <p>Users Who Like this artist</p>
+    {% for user in favorites %}
+    {{ user.fname }} {{user.lname }},
+    {% endfor %}
+<form action="/favoriteartist/{{artist.id}}" method="POST">
+    {% csrf_token %}
+    <button>Add Artist</button>
+    </fieldset>
+    
+    
+
+</body>
+
+</html>
